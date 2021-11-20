@@ -63,8 +63,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", "-e", "zsh", NULL };
+static const char *dmenucmd[] = { "dmenu_run", NULL };
+static const char *termcmd[]  = { "stt", NULL };
 static const char *upvol[]   = { "volumectl", "-i", "5", NULL };
 static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *upbrit[]   = { "brightness", "-i", "10", NULL };
@@ -72,6 +72,8 @@ static const char *downbrit[] = { "brightness", "-d", "10", NULL };
 static const char *mutevol[] = { "pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
 static const char *kswitch[]  = { "kswitch", NULL };
+static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
+static const char *lf[]  = { "st", "-e", "lf", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -117,6 +119,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,      spawn,          {.v = chrome } },
     { Mod1Mask,                     XK_Shift_L,spawn,          {.v = kswitch } },
     { ShiftMask,                    XK_Alt_L,  spawn,          {.v = kswitch } },
+	{ MODKEY,                       XK_g,      spawn,          {.v = gnomecontrolcenter } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = lf } },
 };
 
 /* button definitions */
