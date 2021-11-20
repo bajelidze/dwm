@@ -1,0 +1,6 @@
+/dwm
+/dwmblocks/dwmblocks
+*.o
+*.diff
+*.orig
+*.def*
