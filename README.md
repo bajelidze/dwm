@@ -2,3 +2,4 @@
 - actualfullscreen
 - systray
 - noborderfloatingfix
+- notitle
