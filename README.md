@@ -3,3 +3,5 @@
 - systray
 - noborderfloatingfix
 - notitle
+- noborderfloatingfix
+- hide_vacant_tags
