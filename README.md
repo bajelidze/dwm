@@ -6,3 +6,4 @@
 - noborderfloatingfix
 - hide_vacant_tags
 - alwayscenter
+- movestack
