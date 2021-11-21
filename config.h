@@ -89,57 +89,58 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34
 
 #include "selfrestart.c"
 
+// Find out keycodes using xev
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_s,      zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_z,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_o,      quit,           {0} },
-    { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
-    { MODKEY,                       XK_minus,  spawn,          {.v = downvol } },
-	{ MODKEY,                       XK_equal,  spawn,          {.v = upvol } },
-	{ MODKEY,                       XK_m,      spawn,          {.v = mutevol } },
-    { MODKEY,                       XK_bracketleft,  spawn,    {.v = downbrit } },
-	{ MODKEY,                       XK_bracketright,  spawn,   {.v = upbrit } },
-	{ MODKEY,                       XK_c,      spawn,          {.v = chrome } },
-    { Mod1Mask,                     XK_Shift_L,spawn,          {.v = kswitch } },
-    { ShiftMask,                    XK_Alt_L,  spawn,          {.v = kswitch } },
-	{ MODKEY,                       XK_g,      spawn,          {.v = gnomecontrolcenter } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = lf } },
+	{ MODKEY,                       40,        spawn,          {.v = dmenucmd } },  // d
+	{ MODKEY,                       36,        spawn,          {.v = termcmd } },   // Return
+	{ MODKEY,                       56,        togglebar,      {0} },               // b
+	{ MODKEY,                       44,        focusstack,     {.i = +1 } },        // j
+	{ MODKEY,                       45,        focusstack,     {.i = -1 } },        // k
+	{ MODKEY,                       31,        incnmaster,     {.i = +1 } },        // i
+	{ MODKEY,                       30,        incnmaster,     {.i = -1 } },        // u
+	{ MODKEY,                       43,        setmfact,       {.f = -0.05} },      // h
+	{ MODKEY,                       46,        setmfact,       {.f = +0.05} },      // l
+	{ MODKEY,                       39,        zoom,           {0} },               // s
+	{ MODKEY,                       23,        view,           {0} },               // Tab
+	{ MODKEY,                       24,        killclient,     {0} },               // q
+	{ MODKEY,                       28,        setlayout,      {.v = &layouts[0]} },// t
+	{ MODKEY,                       25,        setlayout,      {.v = &layouts[1]} },// w
+	{ MODKEY,                       52,        setlayout,      {.v = &layouts[2]} },// z
+	{ MODKEY,                       65,        setlayout,      {0} },               // Space
+	{ MODKEY|ShiftMask,             65,        togglefloating, {0} },               // Space
+	{ MODKEY,                       41,        togglefullscr,  {0} },               // f
+	{ MODKEY,                       19,        view,           {.ui = ~0 } },       // 0
+	{ MODKEY|ShiftMask,             19,        tag,            {.ui = ~0 } },       // 0
+	{ MODKEY,                       59,        focusmon,       {.i = -1 } },        // comma
+	{ MODKEY,                       60,        focusmon,       {.i = +1 } },        // period
+	{ MODKEY|ShiftMask,             59,        tagmon,         {.i = -1 } },        // comma
+	{ MODKEY|ShiftMask,             60,        tagmon,         {.i = +1 } },        // period
+    { MODKEY|ShiftMask,             44,        movestack,      {.i = +1 } },        // j
+	{ MODKEY|ShiftMask,             45,        movestack,      {.i = -1 } },        // k
+	TAGKEYS(                        10,                      0)                     // 1
+	TAGKEYS(                        11,                      1)                     // 2
+	TAGKEYS(                        12,                      2)                     // 3
+	TAGKEYS(                        13,                      3)                     // 4
+	TAGKEYS(                        14,                      4)                     // 5
+	TAGKEYS(                        15,                      5)                     // 6
+	TAGKEYS(                        16,                      6)                     // 7
+	TAGKEYS(                        17,                      7)                     // 8
+	TAGKEYS(                        18,                      8)                     // 9
+	{ MODKEY|ShiftMask,             32,        quit,           {0} },               // o
+    { MODKEY|ShiftMask,             27,        self_restart,   {0} },               // r
+    { MODKEY,                       20,        spawn,          {.v = downvol } },   // -
+	{ MODKEY,                       21,        spawn,          {.v = upvol } },     // =
+	{ MODKEY,                       58,        spawn,          {.v = mutevol } },   // m
+    { MODKEY,                       34,        spawn,    {.v = downbrit } },        // [
+	{ MODKEY,                       35,        spawn,   {.v = upbrit } },           // ]
+	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
+    { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
+    { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
+	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
+	{ MODKEY,                       27,        spawn,          {.v = lf } },        // r
 
-    { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
+    { MODKEY,                       49,        togglescratch,  {.v = scratchpadcmd } }, // `
 };
 
 /* button definitions */

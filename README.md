@@ -13,3 +13,4 @@
 - scratchpad
 - losefullscreen
 - selfrestart
+- keycodes
