@@ -11,3 +11,4 @@
 - underlinetags
 - swallow
 - scratchpad
+- losefullscreen
