@@ -6,8 +6,8 @@ static const Block blocks[] = {
     { "", "bash weather | sed 's/\\..*°/°/'", 300, 0 },
     { "BAT: ", "battery", 5, 0 },
     { "BRIT: ", "bc <<< \"$(xrandr --prop --verbose | sed -n '/Brightness:/s/.*:\\ //p')*100\" | sed 's/\\..*//'", 0, 12 },
-    { "VOL: ", "amixer sget Master | awk -F'[][]' '/Left:/ { print $2 }'", 0, 10 },
-    { "TEMP: ", "sensors | grep 'Core 0:' | awk '{print $3}' | sed 's/+//;s/\\.0//'", 3, 0 },
+    { "VOL: ", "volumestatus", 0, 10 },
+    { "TEMP: ", "sensors | awk '/Core 0:/ {print $3}' | sed 's/+//;s/\\.0//'", 3, 0 },
     { "", "klayout", 0, 11 },
 	{ "", "date '+%b %d (%a) %H:%M:%S'", 1, 0 }
 };
