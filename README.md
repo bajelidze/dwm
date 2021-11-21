@@ -10,3 +10,4 @@
 - pertag
 - underlinetags
 - swallow
+- scratchpad

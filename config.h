@@ -84,6 +84,9 @@ static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "st", "-e", "lf", NULL };
 
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "zsh", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -132,6 +135,8 @@ static Key keys[] = {
     { ShiftMask,                    XK_Alt_L,  spawn,          {.v = kswitch } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = gnomecontrolcenter } },
 	{ MODKEY,                       XK_r,      spawn,          {.v = lf } },
+
+    { MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 };
 
 /* button definitions */
