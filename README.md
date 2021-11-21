@@ -12,3 +12,4 @@
 - swallow
 - scratchpad
 - losefullscreen
+- selfrestart

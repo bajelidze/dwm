@@ -87,6 +87,8 @@ static const char *lf[]  = { "st", "-e", "lf", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "zsh", NULL };
 
+#include "selfrestart.c"
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
@@ -124,7 +126,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_o,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
     { MODKEY,                       XK_minus,  spawn,          {.v = downvol } },
 	{ MODKEY,                       XK_equal,  spawn,          {.v = upvol } },
 	{ MODKEY,                       XK_m,      spawn,          {.v = mutevol } },
