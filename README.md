@@ -9,3 +9,4 @@
 - movestack
 - pertag
 - underlinetags
+- swallow
