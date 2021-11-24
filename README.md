@@ -14,3 +14,4 @@
 - losefullscreen
 - selfrestart
 - keycodes
+- attachbottom
