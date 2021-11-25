@@ -1,0 +1,9 @@
+#!/bin/sh
+
+XCWD="$(xcwd)"
+
+if [[ "$XCWD" == "/" ]]; then
+    XCWD=~
+fi
+
+st -d "$XCWD" -e zsh

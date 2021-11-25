@@ -1,0 +1,30 @@
+#!/bin/bash
+
+temp="$(sensors | awk '/Core 0:/ {print $3}' | sed 's/+//;s/\.0//')"
+
+val="${temp::-2}"
+
+temp_low="#4DD0E1"
+temp_high="#EC7875"
+
+declare color icon
+
+if (( val < 60 )); then
+  color="$temp_low" 
+else
+  color="$temp_high"
+fi
+
+if (( val <= 40 )); then
+  icon=""
+elif (( val > 40 && val <= 50 )); then
+  icon=""
+elif (( val > 50 && val <= 60 )); then
+  icon=""
+elif (( val > 60 && val <= 70 )); then
+  icon=""
+else
+  icon=""
+fi
+
+echo "^c$color^$icon^d^$temp"

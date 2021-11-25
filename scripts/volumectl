@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare operation=$1
+declare increment=$2
+
+if (( increment < 0 )); then
+  echo "invalid increment: $increment"
+  exit 1
+fi
+
+case $operation in
+  -i) pactl set-sink-volume 0 "+$increment%" ;;
+  -d) pactl set-sink-volume 0 "-$increment%" ;;
+  -m) pactl set-sink-mute 0 toggle ;;
+  *) echo "invalid flag: $operation"; exit 1 ;;
+esac
+
+# Signal dwmblocks to update volume in status bar
+kill -44 "$(pidof dwmblocks)" &> /dev/null

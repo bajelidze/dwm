@@ -14,7 +14,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const int user_bh            = 25;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 28;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "Iosevka Nerd Font:size=11", "Weather Icons:size=11", "feather:size=13" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#1e1e1e";
@@ -84,6 +84,7 @@ static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome
 static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "st", "-e", "lf", NULL };
+static const char *flameshot[]  = { "flameshot", NULL };
 
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "zsh", NULL };
@@ -133,13 +134,14 @@ static Key keys[] = {
     { MODKEY,                       20,        spawn,          {.v = downvol } },   // -
 	{ MODKEY,                       21,        spawn,          {.v = upvol } },     // =
 	{ MODKEY,                       58,        spawn,          {.v = mutevol } },   // m
-    { MODKEY,                       34,        spawn,    {.v = downbrit } },        // [
-	{ MODKEY,                       35,        spawn,   {.v = upbrit } },           // ]
+    { MODKEY,                       34,        spawn,          {.v = downbrit } },  // [
+	{ MODKEY,                       35,        spawn,          {.v = upbrit } },    // ]
 	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
     { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
 	{ MODKEY,                       27,        spawn,          {.v = lf } },        // r
+	{ MODKEY,                       107,       spawn,          {.v = flameshot } }, // r
 
     { MODKEY,                       49,        togglescratch,  {.v = scratchpadcmd } }, // `
 };

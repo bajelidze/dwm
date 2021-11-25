@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+_signal_dwmblocks() {
+  kill -46 "$(pidof dwmblocks)" &> /dev/null
+}
+
+_DISPLAY="eDP-1"
+
+curr_brightness="$(xrandr --prop --verbose | sed -n '/Brightness:/s/.*:\ //p')"
+
+curr_abs="$(bc <<< "$curr_brightness*100" | sed 's/\..*//')"
+
+declare operation=$1
+declare increment=$2
+
+if (( increment < 0 )); then
+  echo "invalid increment: $increment"
+  exit 1
+elif [[ "$operation" == "-i" ]] && (( increment + curr_abs > 100 )); then
+  xrandr --output "$_DISPLAY" --brightness 1
+  _signal_dwmblocks
+  exit
+elif [[ "$operation" == "-d" ]] && (( curr_abs - increment < 0 )); then
+  xrandr --output "$_DISPLAY" --brightness 0.1
+  _signal_dwmblocks
+  exit
+fi
+
+declare result
+
+case $operation in
+  -i) result="$(bc -l <<< "$curr_brightness+($increment/100)")" ;;
+  -d) result="$(bc -l <<< "$curr_brightness-($increment/100)")" ;;
+  *) echo "invalid flag: $operation"; exit 1 ;;
+esac
+
+xrandr --output "$_DISPLAY" --brightness "$result"
+_signal_dwmblocks

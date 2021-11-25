@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+is_unmuted() {
+  amixer get Master | tail -2 | grep -cq '\[on\]'
+}
+
+get_volume() {
+  amixer sget Master | awk -F'[][]' '/Left:/ { print $2 }'
+}
+
+declare output
+color_unmuted="#42A5F5"
+color_muted="#EC7875"
+
+if is_unmuted; then
+  output="$(get_volume)"
+else
+  echo "^c$color_muted^ﱝ Muted"
+  exit
+fi
+
+val="${output::-1}"
+declare icon
+
+if (( val >= 0 && val < 33 )); then
+  icon="奄"  
+elif (( val >= 33 && val < 66 )); then
+  icon="奔"
+elif (( val >= 66 && val <= 100 )); then
+  icon="墳"
+fi
+
+echo "^c$color_unmuted^$icon^d^$output"

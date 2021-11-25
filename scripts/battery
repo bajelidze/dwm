@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -e
+
+battery_info="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)"
+
+sed_cmd='/percentage:/s/.*:\ *//p;/state:/s/.*:\ *//p;/time to empty:/s/.*:\ *//p;/time to full:/s/.*:\ *//p'
+
+info=$(sed -n "$sed_cmd" <<< "$battery_info")
+
+{ read -r state && read -r time && read -r percentage; } <<< "$info"
+
+declare output color
+
+output="$percentage "
+
+charging_color="#61C766" # green
+discharging_color="#EC7875" # red
+
+if [[ "$state" == "discharging" ]]; then
+  color="$discharging_color" # red
+  output+="($time)"
+elif [[ "$state" == "charging" ]]; then
+  color="$charging_color" # green
+  output+="($time)"
+elif [[ "$percentage" == "" && "$state" == "fully-charged" ]]; then
+  color="$charging_color"
+  output="100%"
+fi
+
+declare icon
+
+percentage="${percentage::-1}"
+if (( percentage && percentage < 20 )); then
+  icon=""
+elif (( percentage >= 20 && percentage < 40 )); then
+  icon=""
+elif (( percentage >= 40 && percentage < 60 )); then
+  icon=""
+elif (( percentage >= 60 && percentage < 80 )); then
+  icon=""
+elif (( percentage >= 80 && percentage <= 100 )); then
+  icon=""
+fi
+
+
+echo "^c$color^$icon^d^$output"

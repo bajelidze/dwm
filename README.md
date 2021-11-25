@@ -16,3 +16,4 @@
 - keycodes
 - attachbottom
 - bar_height
+- status2d
