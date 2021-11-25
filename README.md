@@ -15,3 +15,4 @@
 - selfrestart
 - keycodes
 - attachbottom
+- bar_height
