@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 battery_info="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)"
 
 sed_cmd='/percentage:/s/.*:\ *//p;/state:/s/.*:\ *//p;/time to empty:/s/.*:\ *//p;/time to full:/s/.*:\ *//p'
@@ -9,6 +7,10 @@ sed_cmd='/percentage:/s/.*:\ *//p;/state:/s/.*:\ *//p;/time to empty:/s/.*:\ *//
 info=$(sed -n "$sed_cmd" <<< "$battery_info")
 
 { read -r state && read -r time && read -r percentage; } <<< "$info"
+
+if [[ -z "$state" ]]; then
+  { read -r state && read -r percentage; } <<< "$info"
+fi
 
 declare output color
 
@@ -26,6 +28,8 @@ elif [[ "$state" == "charging" ]]; then
 elif [[ "$percentage" == "" && "$state" == "fully-charged" ]]; then
   color="$charging_color"
   output="100%"
+  echo "^c$charging_color^^d^$output"
+  exit
 fi
 
 declare icon

@@ -1,33 +1,32 @@
 #!/usr/bin/env bash
 
-is_unmuted() {
-  amixer get Master | tail -2 | grep -cq '\[on\]'
+is_muted() {
+  pamixer --get-mute 1> /dev/null
 }
 
 get_volume() {
-  amixer sget Master | awk -F'[][]' '/Left:/ { print $2 }'
+  pamixer --get-volume
 }
 
 declare output
 color_unmuted="#42A5F5"
 color_muted="#EC7875"
 
-if is_unmuted; then
-  output="$(get_volume)"
-else
+if is_muted; then
   echo "^c$color_muted^ﱝ Muted"
   exit
+else
+  output="$(get_volume)"
 fi
 
-val="${output::-1}"
 declare icon
 
-if (( val >= 0 && val < 33 )); then
+if (( output >= 0 && output < 33 )); then
   icon="奄"  
-elif (( val >= 33 && val < 66 )); then
+elif (( output >= 33 && output < 66 )); then
   icon="奔"
-elif (( val >= 66 && val <= 100 )); then
+elif (( output >= 66 && output <= 100 )); then
   icon="墳"
 fi
 
-echo "^c$color_unmuted^$icon^d^$output"
+echo "^c$color_unmuted^$icon^d^$output%"
