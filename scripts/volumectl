@@ -11,9 +11,9 @@ if (( increment < 0 )); then
 fi
 
 case $operation in
-  -i) pactl set-sink-volume 0 "+$increment%" ;;
-  -d) pactl set-sink-volume 0 "-$increment%" ;;
-  -m) pactl set-sink-mute 0 toggle ;;
+  -i) amixer set Master "$increment%+" ;;
+  -d) amixer set Master "$increment%-" ;;
+  -m) amixer set Master toggle ;;
   *) echo "invalid flag: $operation"; exit 1 ;;
 esac
 

@@ -25,7 +25,7 @@ static const char col_cyan[]        = "#42A5F5";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_gray1,  col_cyan  },
+	[SchemeSel]  = { col_cyan,  col_gray1, col_cyan  },
 };
 
 /* tagging */
@@ -78,12 +78,12 @@ static const char *termcmd[]  = { "stt", NULL };
 static const char *upvol[]   = { "volumectl", "-i", "5", NULL };
 static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
-static const char *upbrit[]   = { "brightness", "-i", "10", NULL };
-static const char *downbrit[] = { "brightness", "-d", "10", NULL };
+static const char *upbrit[]   = { "brightness", "-inc", "10", NULL };
+static const char *downbrit[] = { "brightness", "-dec", "10", NULL };
 static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
-static const char *kswitch[]  = { "kswitch", NULL };
+static const char *kswitch[]  = { "klswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
-static const char *lf[]  = { "st", "-e", "lf", NULL };
+static const char *lf[]  = { "st", "-e", "lfrun", NULL };
 static const char *flameshot[]  = { "flameshot", NULL };
 
 static const char scratchpadname[] = "scratchpad";
