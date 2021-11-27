@@ -132,6 +132,7 @@ static Key keys[] = {
 	TAGKEYS(                        18,                      8)                     // 9
 	{ MODKEY|ShiftMask,             32,        quit,           {0} },               // o
     { MODKEY|ShiftMask,             27,        self_restart,   {0} },               // r
+    { MODKEY,                       27,        resetlayout,    {0} },               // r
     { MODKEY,                       20,        spawn,          {.v = downvol } },   // -
 	{ MODKEY,                       21,        spawn,          {.v = upvol } },     // =
 	{ MODKEY,                       58,        spawn,          {.v = mutevol } },   // m
@@ -141,7 +142,7 @@ static Key keys[] = {
     { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
-	{ MODKEY,                       27,        spawn,          {.v = lf } },        // r
+	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
 	{ MODKEY,                       107,       spawn,          {.v = flameshot } }, // PrtScr
 	{ MODKEY,                       38,        spawn,          {.v = touchpadtoggle } }, // a
 
