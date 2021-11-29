@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $1 == "gui" ]]; then
+    flameshot &
+    sleep 0.3 && flameshot gui
+elif [[ $1 == "full" ]]; then
+    flameshot &
+    sleep 0.3 && flameshot full -p "$HOME/Pictures/Screenshots"
+else
+    echo "Error: invalid flag: $1" >&2
+fi

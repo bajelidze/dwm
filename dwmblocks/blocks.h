@@ -1,6 +1,6 @@
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
-    { "", "bash weather | sed 's/\\..*°/°/'", 300, 0 },
+    { "   ", "bash weather | sed 's/\\..*°/°/'", 300, 0 },
     { "", "sensorstatus", 3, 0 },
     { "", "battery", 5, 0 },
     { "^c#FDD835^^d^", "bc <<< \"$(xrandr --prop --verbose | sed -n '/Brightness:/s/.*:\\ //p')*100\" | sed 's/\\..*//'", 0, 12 },
