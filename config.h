@@ -83,7 +83,7 @@ static const char *downbrit[] = { "brightness", "-d", "10", NULL };
 static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
 static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
-static const char *lf[]  = { "st", "-e", "lf", NULL };
+static const char *lf[]  = { "st", "-e", "lfrun", NULL };
 static const char *flameshot[]  = { "fs", "gui", NULL };
 static const char *flameshotfull[]  = { "fs", "full", NULL };
 
@@ -142,7 +142,7 @@ static Key keys[] = {
     { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
-	{ MODKEY,                       27,        spawn,          {.v = lf } },        // r
+	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
 	{ NULL,                         107,       spawn,          {.v = flameshot } }, // PrtSc
 	{ ShiftMask,                    107,       spawn,          {.v = flameshotfull } }, // PrtSc
 
