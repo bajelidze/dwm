@@ -2,7 +2,7 @@
 
 if [[ $1 == "gui" ]]; then
     flameshot &
-    sleep 0.3 && flameshot gui
+    sleep 0.3 && flameshot gui -p "$HOME/Pictures/Screenshots"
 elif [[ $1 == "full" ]]; then
     flameshot &
     sleep 0.3 && flameshot full -p "$HOME/Pictures/Screenshots"

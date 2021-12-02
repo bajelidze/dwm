@@ -57,7 +57,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "",      tile },    /* first entry is default */
 	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	// { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -90,6 +90,12 @@ static const char *flameshotfull[]  = { "fs", "full", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "zsh", NULL };
 
+
+static const char *kswitchtous[]  = { "kswitchto", "us", NULL };
+static const char *kswitchtode[]  = { "kswitchto", "de", NULL };
+static const char *kswitchtoru[]  = { "kswitchto", "ru", NULL };
+static const char *kswitchtoge[]  = { "kswitchto", "ge", NULL };
+
 #include "selfrestart.c"
 
 // Find out keycodes using xev
@@ -109,7 +115,7 @@ static Key keys[] = {
 	{ MODKEY,                       24,        killclient,     {0} },               // q
 	{ MODKEY,                       28,        setlayout,      {.v = &layouts[0]} },// t
 	{ MODKEY,                       25,        setlayout,      {.v = &layouts[1]} },// w
-	{ MODKEY,                       52,        setlayout,      {.v = &layouts[2]} },// z
+	// { MODKEY,                       52,        setlayout,      {.v = &layouts[2]} },// z
 	{ MODKEY,                       65,        setlayout,      {0} },               // Space
 	{ MODKEY|ShiftMask,             65,        togglefloating, {0} },               // Space
 	{ MODKEY,                       41,        togglefullscr,  {0} },               // f
@@ -141,6 +147,10 @@ static Key keys[] = {
 	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
     { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
+    { MODKEY,                       52,        spawn,          {.v = kswitchtous} },// z
+    { MODKEY|ShiftMask,             52,        spawn,          {.v = kswitchtode} },// Shift+z
+    { MODKEY,                       53,        spawn,          {.v = kswitchtoru} },// x
+    { MODKEY,                       55,        spawn,          {.v = kswitchtoge} },// v
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
 	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
 	{ NULL,                         107,       spawn,          {.v = flameshot } }, // PrtSc

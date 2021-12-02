@@ -19,5 +19,7 @@ for i in "${!layouts[@]}"; do
   fi
 done
 
+[[ -z "$next_layout" ]] && next_layout=us
+
 setxkbmap "$next_layout"
 kill -45 "$(pidof dwmblocks)" &> /dev/null

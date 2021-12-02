@@ -25,7 +25,7 @@ declare -A icon_map=(
   [50n]=''         # Fog - night
 )
 
-res="$(curl "$api_uri")"
+res="$(curl -s "$api_uri")"
 
 icon_idx="$(jq -r '.weather[0].icon' <<< "$res")"
 declare icon
@@ -38,4 +38,4 @@ fi
 
 temp="$(printf %.0f "$(jq -r '.main.temp' <<< "$res")")"
 
-echo "$icon^d^$temp"
+echo "$icon^d^$temp°C"
