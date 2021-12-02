@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+setxkbmap "$1"
+kill -45 "$(pidof dwmblocks)" &> /dev/null

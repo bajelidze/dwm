@@ -14,7 +14,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const int user_bh            = 24;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 25;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "Weather Icons:size=11", "Iosevka Nerd Font:size=11" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#1e1e1e";
@@ -57,7 +57,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "",      tile },    /* first entry is default */
 	{ "",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	// { "[M]",      monocle },
 };
 
 /* key definitions */
@@ -91,6 +91,11 @@ static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "zsh", NULL };
 static const char *touchpadtoggle[] = { "touchpad_toggle", NULL };
 
+static const char *kswitchtous[]  = { "kswitchto", "us", NULL };
+static const char *kswitchtode[]  = { "kswitchto", "de", NULL };
+static const char *kswitchtoru[]  = { "kswitchto", "ru", NULL };
+static const char *kswitchtoge[]  = { "kswitchto", "ge", NULL };
+
 #include "selfrestart.c"
 
 // Find out keycodes using xev
@@ -110,7 +115,7 @@ static Key keys[] = {
 	{ MODKEY,                       24,        killclient,     {0} },               // q
 	{ MODKEY,                       28,        setlayout,      {.v = &layouts[0]} },// t
 	{ MODKEY,                       25,        setlayout,      {.v = &layouts[1]} },// w
-	{ MODKEY,                       52,        setlayout,      {.v = &layouts[2]} },// z
+	// { MODKEY,                       52,        setlayout,      {.v = &layouts[2]} },// z
 	{ MODKEY,                       65,        setlayout,      {0} },               // Space
 	{ MODKEY|ShiftMask,             65,        togglefloating, {0} },               // Space
 	{ MODKEY,                       41,        togglefullscr,  {0} },               // f
@@ -142,6 +147,10 @@ static Key keys[] = {
 	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
     { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
+    { MODKEY,                       52,        spawn,          {.v = kswitchtous} },// z
+    { MODKEY|ShiftMask,             52,        spawn,          {.v = kswitchtode} },// Shift+z
+    { MODKEY,                       53,        spawn,          {.v = kswitchtoru} },// x
+    { MODKEY,                       55,        spawn,          {.v = kswitchtoge} },// v
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
 	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
 	{ NULL,                         218,       spawn,          {.v = flameshot } }, // PrtScr

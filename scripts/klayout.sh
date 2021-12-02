@@ -1,4 +1,4 @@
 #!/bin/bash
 
 layout="$(klayout)"
-echo "^d^ ${layout^^}^d^"
+echo "^d^^d^${layout^^}^d^"

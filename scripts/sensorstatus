@@ -1,6 +1,6 @@
 #!/bin/bash
 
-temp="$(sensors | awk '/Core 0:/ {print $3}' | sed 's/+//;s/\.0//')"
+temp="$(sensors | awk '/Package id 0:/ {print $4}' | sed 's/+//;s/\.0//')"
 
 val="${temp::-2}"
 
