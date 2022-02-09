@@ -44,6 +44,7 @@ static const Rule rules[] = {
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	// { "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	// { "Google-chrome", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "Steam",   NULL,     NULL,           0,         1,          0,          0,         -1 },
     { "st-256color", NULL,       NULL,       0,            0,           1,          0,         -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -81,7 +82,7 @@ static const char *mutevol[] = { "volumectl", "-m",  NULL };
 static const char *upbrit[]   = { "brightness", "-inc", "10", NULL };
 static const char *downbrit[] = { "brightness", "-dec", "10", NULL };
 static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
-static const char *kswitch[]  = { "klswitch", NULL };
+// static const char *kswitch[]  = { "klswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "st", "-e", "lfrun", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", "-p", "/home/irakli/Pictures/Screenshots", NULL };
@@ -145,8 +146,8 @@ static Key keys[] = {
     { MODKEY,                       34,        spawn,          {.v = downbrit } },  // [
 	{ MODKEY,                       35,        spawn,          {.v = upbrit } },    // ]
 	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
-    { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
-    { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
+    // { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
+    // { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
     { MODKEY,                       52,        spawn,          {.v = kswitchtous} },// z
     { MODKEY|ShiftMask,             52,        spawn,          {.v = kswitchtode} },// Shift+z
     { MODKEY,                       53,        spawn,          {.v = kswitchtoru} },// x
