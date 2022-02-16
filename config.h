@@ -1,5 +1,3 @@
-/* See LICENSE file for copyright and license details. */
-
 #include <X11/XF86keysym.h>
 #include "movestack.c"
 
@@ -81,7 +79,7 @@ static const char *mutevol[] = { "volumectl", "-m",  NULL };
 static const char *upbrit[]   = { "brightness", "-i", "10", NULL };
 static const char *downbrit[] = { "brightness", "-d", "10", NULL };
 static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
-static const char *kswitch[]  = { "kswitch", NULL };
+// static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "st", "-e", "lfrun", NULL };
 static const char *flameshot[]  = { "fs", "gui", NULL };
@@ -106,8 +104,8 @@ static Key keys[] = {
 	{ MODKEY,                       56,        togglebar,      {0} },               // b
 	{ MODKEY,                       44,        focusstack,     {.i = +1 } },        // j
 	{ MODKEY,                       45,        focusstack,     {.i = -1 } },        // k
-	{ MODKEY,                       31,        incnmaster,     {.i = +1 } },        // i
-	{ MODKEY,                       30,        incnmaster,     {.i = -1 } },        // u
+	// { MODKEY,                       31,        incnmaster,     {.i = +1 } },        // i
+	// { MODKEY,                       30,        incnmaster,     {.i = -1 } },        // u
 	{ MODKEY,                       43,        setmfact,       {.f = -0.05} },      // h
 	{ MODKEY,                       46,        setmfact,       {.f = +0.05} },      // l
 	{ MODKEY,                       39,        zoom,           {0} },               // s
@@ -145,8 +143,8 @@ static Key keys[] = {
     { MODKEY,                       34,        spawn,          {.v = downbrit } },  // [
 	{ MODKEY,                       35,        spawn,          {.v = upbrit } },    // ]
 	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
-    { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
-    { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
+    // { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
+    // { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
     { MODKEY,                       52,        spawn,          {.v = kswitchtous} },// z
     { MODKEY|ShiftMask,             52,        spawn,          {.v = kswitchtode} },// Shift+z
     { MODKEY,                       53,        spawn,          {.v = kswitchtoru} },// x
