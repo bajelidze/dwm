@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+icon="/usr/share/icons/Adwaita/scalable/devices/input-touchpad-symbolic.svg"
+device=13
+
+state="$(xinput list-props 13 | awk '/^\tDevice Enabled \([0-9]+\):\t[01]/ {print $NF}')"
+
+declare action
+
+if [[ "$state" == 1 ]]; then
+	action=disable
+else
+	action=enable
+fi
+
+xinput "$action" "$device"
+notify-send -i "$icon" -u low "Touchpad ${action}d"
