@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "^c#FDD835^^d^$(xbacklight -get)%"
+echo "^c#FDD835^^d^$(xbacklight -get | cut -f1 -d.)%"
