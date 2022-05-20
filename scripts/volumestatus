@@ -26,7 +26,7 @@ if (( val >= 0 && val < 33 )); then
   icon="奄"  
 elif (( val >= 33 && val < 66 )); then
   icon="奔"
-elif (( val >= 66 && val <= 100 )); then
+elif (( val >= 66 )); then
   icon="墳"
 fi
 
