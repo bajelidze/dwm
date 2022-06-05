@@ -27,4 +27,4 @@ else
   icon=""
 fi
 
-echo "^c$color^$icon^d^$temp"
+echo "^c$color^$icon^d^$temp°C"

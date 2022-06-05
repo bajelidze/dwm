@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+xbacklight "$@"
+kill -46 "$(pidof dwmblocks)" &> /dev/null

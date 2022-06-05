@@ -4,6 +4,7 @@ static const Block blocks[] = {
     { "", "sensorstatus", 3, 0 },
     { "", "battery", 5, 0 },
     { "", "brightnessstatus", 0, 12 },
+    // { "^c#FDD835^^d^", "bc <<< \"$(xrandr --prop --verbose | sed -n '/Brightness:/s/.*:\\ //p')*100\" | sed 's/\\..*//'", 0, 12 },
     { "", "volumestatus", 0, 10 },
     { "", "klayout.sh", 0, 11 },
 	{ "", "date '+%b %d (%a) %H:%M:%S'", 1, 0 },
