@@ -86,8 +86,8 @@ static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
 static const char *upbrit[]   = { "brightness", "-inc", "10", NULL };
 static const char *downbrit[] = { "brightness", "-dec", "10", NULL };
-// static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
-static const char *firefox[]  = { "firefox", NULL };
+static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
+// static const char *firefox[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "klswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "st", "-e", "lfrun", NULL };
@@ -151,7 +151,7 @@ static Key keys[] = {
 	{ MODKEY,                       58,        spawn,          {.v = mutevol } },   // m
     { MODKEY,                       34,        spawn,          {.v = downbrit } },  // [
 	{ MODKEY,                       35,        spawn,          {.v = upbrit } },    // ]
-	{ MODKEY,                       54,        spawn,          {.v = firefox } },    // c
+	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
     // { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     // { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
     { MODKEY,                       52,        spawn,          {.v = kswitchtous} },// z

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 is_muted() {
-  pamixer --get-mute 1> /dev/null
+  pamixer --get-mute
 }
 
 get_volume() {
@@ -12,7 +12,7 @@ declare output
 color_unmuted="#42A5F5"
 color_muted="#EC7875"
 
-if is_muted; then
+if [[ $(is_muted) == "true" ]]; then
   echo "^c$color_muted^ﱝ Muted"
   exit
 else
