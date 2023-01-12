@@ -1,6 +1,6 @@
 #!/bin/bash
 
-temp="$(sensors | awk '/Package id 0:/ {print $4}' | sed 's/+//;s/\.0//')"
+temp="$(sensors | sed -n '/k10temp-pci-00c3/{n;n;s/^.*+//;s/\..*//;p}')"
 
 val="${temp::-2}"
 

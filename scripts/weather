@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -x
 source "$HOME/.config/.weather_config"
 
 api_uri="api.openweathermap.org/data/2.5/weather?units=metric&id=$WEATHER_CITY_ID&appid=$WEATHER_API_KEY"
@@ -25,7 +26,11 @@ declare -A icon_map=(
   [50n]=''         # Fog - night
 )
 
-res="$(curl -s "$api_uri")"
+res="$(timeout 2 curl -s "$api_uri")"
+if [[ $? != 0 ]]; then
+	echo "${icon_map[01d]}^d^-"
+	exit
+fi
 
 if [[ $1 == "-p" ]]; then
   jq <<< "$res"

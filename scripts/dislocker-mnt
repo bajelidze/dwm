@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+main() {
+	local dev=$1
+	local dest=$2
+
+	if [[ -z $dev || -z $dest ]]; then
+		echo "Missing dev or destination" >&2; exit 1
+	fi
+
+	local dir="$(mktemp -d)"
+
+  sudo dislocker -v -V "$dev" -- "$dir"
+
+  sudo mount -o loop "$dir/dislocker-file" "$dest"
+}
+
+main "$@"

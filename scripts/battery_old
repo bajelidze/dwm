@@ -1,31 +1,25 @@
 #!/usr/bin/env bash
 
-set -e
+battery_info="$(acpi | awk -F, '/^Battery 0:/ { gsub(/Battery 0: /,""); print $1 $2 $3 }')"
 
-battery_info="$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)"
-
-sed_cmd='/percentage:/s/.*:\ *//p;/state:/s/.*:\ *//p;/time to empty:/s/.*:\ *//p;/time to full:/s/.*:\ *//p'
-
-info=$(sed -n "$sed_cmd" <<< "$battery_info")
-
-{ read -r state && read -r time && read -r percentage; } <<< "$info"
+read -r state percentage remaining <<< "$battery_info"
 
 declare output color
 
-output="$percentage "
+output="$percentage"
 
 charging_color="#61C766" # green
 discharging_color="#EC7875" # red
 
-if [[ "$state" == "discharging" ]]; then
+if [[ "$state" == "Discharging" ]]; then
   color="$discharging_color" # red
-  output+="($time)"
-elif [[ "$state" == "charging" ]]; then
+elif [[ "$state" == "Charging" ]]; then
   color="$charging_color" # green
-  output+="($time)"
-elif [[ "$percentage" == "" && "$state" == "fully-charged" ]]; then
+elif [[ "$state" == "Fully-charged" ]]; then
   color="$charging_color"
   output="100%"
+  echo "^c$charging_color^^d^$output"
+  exit
 fi
 
 declare icon
@@ -43,5 +37,4 @@ elif (( percentage >= 80 && percentage <= 100 )); then
   icon=""
 fi
 
-
-echo "^c$color^$icon^d^$output"
+echo "^c$color^$icon^d^$output^d^($remaining)"
