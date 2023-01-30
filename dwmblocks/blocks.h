@@ -1,6 +1,6 @@
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
-    // { "            ", "play_widget", 60, 0 },
+	// { "", "play_widget", 60, 0 },
 	{ "", "weather", 300, 0 },
     { "", "sensorstatus", 3, 0 },
     { "", "battery", 5, 0 },

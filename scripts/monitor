@@ -1,0 +1,27 @@
+#!/bin/bash
+
+main_monitor=eDP-1
+
+# shellcheck disable=SC2207
+list_monitors=$(xrandr | grep ' connected' | grep -v "^$main_monitor")
+
+first_mon="$(head -n1 <<< "$list_monitors" | awk '{print $1}')"
+second_mon="$(tail -n1 <<< "$list_monitors" | awk '{print $1}')"
+
+if [[ $1 == -r ]]; then
+  xrandr --output "$main_monitor" --mode 1920x1080 --rate 60 \
+    --output "$first_mon" --off \
+    --output "$second_mon" --off \
+    --auto
+  
+  feh --bg-scale /home/ib/Pictures/tree.jpg
+  exit
+fi
+
+xrandr --output "$first_mon" --mode 2560x1440 --rate 144 --pos 1920x0 \
+  --output "$second_mon" --left-of "$first_mon" --mode 1920x1080 --rate 180 --pos 0x360 \
+  --output "$main_monitor" --off 2>/dev/null || sleep 1; xrandr --output "$second_mon" --mode 2560x1440 --rate 240 \
+  --output "$first_mon" --left-of "$second_mon" --mode 1920x1080 --rate 180 \
+  --output "$main_monitor" --off
+
+feh --bg-scale /home/ib/Pictures/tree.jpg

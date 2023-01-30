@@ -77,13 +77,14 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "stt", NULL };
+static const char *termcmd[]  = { "alacrittyy", "--working-directory", "$(xcwd)", NULL };
 static const char *upvol[]   = { "volumectl", "-i", "5", NULL };
 static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
 static const char *upbrit[]   = { "brightness", "-i", "10", NULL };
 static const char *downbrit[] = { "brightness", "-d", "10", NULL };
-static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
+// static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
+static const char *chrome[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "st", "-e", "lfrun", NULL };
@@ -98,6 +99,9 @@ static const char *kswitchtous[]  = { "kswitchto", "us", NULL };
 static const char *kswitchtode[]  = { "kswitchto", "de", NULL };
 static const char *kswitchtoru[]  = { "kswitchto", "ru", NULL };
 static const char *kswitchtoge[]  = { "kswitchto", "ge", NULL };
+
+static const char *monitor[]  = { "monitor", NULL };
+static const char *monitorr[]  = { "monitor", "-r", NULL };
 
 #include "selfrestart.c"
 
@@ -154,6 +158,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             52,        spawn,          {.v = kswitchtode} },// Shift+z
     { MODKEY,                       53,        spawn,          {.v = kswitchtoru} },// x
     { MODKEY,                       55,        spawn,          {.v = kswitchtoge} },// v
+    { MODKEY,                       58,        spawn,          {.v = monitor } },// m
+    { MODKEY|ShiftMask,             58,        spawn,          {.v = monitorr } },// m
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
 	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
 	{ NULL,                         107,       spawn,          {.v = flameshot } }, // PrtSc
