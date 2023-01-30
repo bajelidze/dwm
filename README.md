@@ -18,3 +18,5 @@
 - bar_height
 - status2d
 - resetlayout
+- vanitygaps
+- warp
