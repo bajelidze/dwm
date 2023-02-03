@@ -86,7 +86,7 @@ static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
 static const char *upbrit[]   = { "brightness", "-inc", "10", NULL };
 static const char *downbrit[] = { "brightness", "-dec", "10", NULL };
-static const char *chrome[]  = { "google-chrome-scaled", "--password-store=gnome", NULL };
+static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
 // static const char *firefox[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "klswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
@@ -102,6 +102,9 @@ static const char *kswitchtous[]  = { "kswitchto", "us", NULL };
 static const char *kswitchtode[]  = { "kswitchto", "de", NULL };
 static const char *kswitchtoru[]  = { "kswitchto", "ru", NULL };
 static const char *kswitchtoge[]  = { "kswitchto", "ge", NULL };
+
+static const char *monitor[] = { "monitor", NULL };
+static const char *monitorr[] = { "monitor", "-r", NULL };
 
 #include "selfrestart.c"
 
@@ -161,6 +164,8 @@ static Key keys[] = {
 	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
 	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
 	{ NULL,                         218,       spawn,          {.v = flameshot } }, // PrtScr
+	{ MODKEY,                       58,        spawn,          {.v = monitor } }, // PrtScr
+	{ MODKEY|ShiftMask,             58,        spawn,          {.v = monitorr } }, // PrtScr
 	{ ShiftMask,                    218,       spawn,          {.v = flameshotfull } }, // Shift+PrtScr
 	{ MODKEY,                       38,        spawn,          {.v = touchpadtoggle } }, // a
 	{ MODKEY,                       42,        togglegaps,     {0}                } , // g

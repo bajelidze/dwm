@@ -1,3 +1,16 @@
 #!/bin/bash
 
-xrandr --output HDMI-1-0 --mode 2560x1440 --rate 144
+if [[ "$1" == "-r" ]]; then
+	xrandr --output DP-0 --off \
+		--output HDMI-0 --off \
+		--output eDP-1-1 --mode 1920x1080 --rate 240 --pos 0x0
+
+	feh --bg-scale ~/Pictures/tree.jpg
+	exit
+fi
+
+xrandr --output DP-0 --mode 2560x1440 --rate 240 --pos 1920x0 \
+	--output HDMI-0 --mode 1920x1080 --rate 180 --pos 0x360 \
+	--output eDP-1-1 --off
+
+feh --bg-scale ~/Pictures/tree.jpg
