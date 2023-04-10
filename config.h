@@ -89,7 +89,7 @@ static const char *downbrit[] = { "brightness", "-dec", "10", NULL };
 static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
 // static const char *firefox[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "klswitch", NULL };
-static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
+static const char *gnomecontrolcenter[]  = { "cinnamon-settings", NULL };
 static const char *lf[]  = { "st", "-e", "lfrun", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", "-p", "/home/irakli/Pictures/Screenshots", NULL };
 static const char *flameshotfull[]  = { "flameshot", "full", "-p", "/home/irakli/Pictures/Screenshots", NULL };
@@ -121,7 +121,7 @@ static Key keys[] = {
 	{ MODKEY,                       43,        setmfact,       {.f = -0.05} },      // h
 	{ MODKEY,                       46,        setmfact,       {.f = +0.05} },      // l
 	{ MODKEY,                       39,        zoom,           {0} },               // s
-	{ MODKEY,                       23,        view,           {0} },               // Tab
+	// { MODKEY,                       23,        view,           {0} },               // Tab
 	{ MODKEY,                       24,        killclient,     {0} },               // q
 	{ MODKEY,                       28,        setlayout,      {.v = &layouts[0]} },// t
 	{ MODKEY,                       25,        setlayout,      {.v = &layouts[1]} },// w
@@ -133,8 +133,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             19,        tag,            {.ui = ~0 } },       // 0
 	{ MODKEY,                       59,        focusmon,       {.i = -1 } },        // comma
 	{ MODKEY,                       60,        focusmon,       {.i = +1 } },        // period
+	{ MODKEY,                       23,        focusmon,       {.i = +1 } },        // Tab
 	{ MODKEY|ShiftMask,             59,        tagmon,         {.i = -1 } },        // comma
 	{ MODKEY|ShiftMask,             60,        tagmon,         {.i = +1 } },        // period
+	{ MODKEY|ShiftMask,             23,        tagmon,         {.i = +1 } },        // Tab
     { MODKEY|ShiftMask,             44,        movestack,      {.i = +1 } },        // j
 	{ MODKEY|ShiftMask,             45,        movestack,      {.i = -1 } },        // k
 	TAGKEYS(                        10,                      0)                     // 1
