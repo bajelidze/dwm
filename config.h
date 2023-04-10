@@ -1,4 +1,3 @@
-#include <X11/XF86keysym.h>
 #include "movestack.c"
 
 /* appearance */
@@ -118,7 +117,7 @@ static Key keys[] = {
 	{ MODKEY,                       43,        setmfact,       {.f = -0.05} },      // h
 	{ MODKEY,                       46,        setmfact,       {.f = +0.05} },      // l
 	{ MODKEY,                       39,        zoom,           {0} },               // s
-	{ MODKEY,                       23,        view,           {0} },               // Tab
+    // { MODKEY,                       23,        view,           {0} },               // Tab
 	{ MODKEY,                       24,        killclient,     {0} },               // q
 	{ MODKEY,                       28,        setlayout,      {.v = &layouts[0]} },// t
 	{ MODKEY,                       25,        setlayout,      {.v = &layouts[1]} },// w
@@ -130,6 +129,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             19,        tag,            {.ui = ~0 } },       // 0
 	{ MODKEY,                       59,        focusmon,       {.i = -1 } },        // comma
 	{ MODKEY,                       60,        focusmon,       {.i = +1 } },        // period
+	{ MODKEY,                       23,        focusmon,       {.i = +1 } },        // Tab
+	{ MODKEY|ShiftMask,             23,        tagmon,         {.i = +1 } },        // Tab
 	{ MODKEY|ShiftMask,             59,        tagmon,         {.i = -1 } },        // comma
 	{ MODKEY|ShiftMask,             60,        tagmon,         {.i = +1 } },        // period
     { MODKEY|ShiftMask,             44,        movestack,      {.i = +1 } },        // j
@@ -148,7 +149,7 @@ static Key keys[] = {
     { MODKEY,                       27,        resetlayout,    {0} },               // r
     { MODKEY,                       20,        spawn,          {.v = downvol } },   // -
 	{ MODKEY,                       21,        spawn,          {.v = upvol } },     // =
-	{ MODKEY,                       58,        spawn,          {.v = mutevol } },   // m
+	{ MODKEY,                       57,        spawn,          {.v = mutevol } },   // m
     { MODKEY,                       34,        spawn,          {.v = downbrit } },  // [
 	{ MODKEY,                       35,        spawn,          {.v = upbrit } },    // ]
 	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
