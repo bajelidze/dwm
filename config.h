@@ -1,5 +1,3 @@
-/* See LICENSE file for copyright and license details. */
-
 #include <X11/XF86keysym.h>
 #include "movestack.c"
 
@@ -69,10 +67,16 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+	{ MODKEY,                      0, KEY,      view,           {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,          0, KEY,      toggleview,     {.ui = 1 << TAG} }, \
+	{ MODKEY|ShiftMask,            0, KEY,      tag,            {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask|ShiftMask,0, KEY,      toggletag,      {.ui = 1 << TAG} },
+
+#define KEYCODE(MODIFIER, KEY, FUNC, ARG) \
+	{ MODIFIER, 0, KEY, FUNC, ARG }
+
+#define KEYSYM(MODIFIER, KEY, FUNC, ARG) \
+	{ MODIFIER, KEY, 0, FUNC, ARG }
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -111,34 +115,34 @@ static const char *monitorr[] = { "monitor", "-r", NULL };
 // Find out keycodes using xev
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       40,        spawn,          {.v = dmenucmd } },  // d
-	{ MODKEY,                       36,        spawn,          {.v = termcmd } },   // Return
-	{ MODKEY,                       56,        togglebar,      {0} },               // b
-	{ MODKEY,                       44,        focusstack,     {.i = +1 } },        // j
-	{ MODKEY,                       45,        focusstack,     {.i = -1 } },        // k
-	{ MODKEY,                       31,        incnmaster,     {.i = +1 } },        // i
-	{ MODKEY,                       30,        incnmaster,     {.i = -1 } },        // u
-	{ MODKEY,                       43,        setmfact,       {.f = -0.05} },      // h
-	{ MODKEY,                       46,        setmfact,       {.f = +0.05} },      // l
-	{ MODKEY,                       39,        zoom,           {0} },               // s
-	// { MODKEY,                       23,        view,           {0} },               // Tab
-	{ MODKEY,                       24,        killclient,     {0} },               // q
-	{ MODKEY,                       28,        setlayout,      {.v = &layouts[0]} },// t
-	{ MODKEY,                       25,        setlayout,      {.v = &layouts[1]} },// w
+	KEYCODE(MODKEY, 40, spawn, {.v = dmenucmd }),  // d
+	KEYCODE(MODKEY, 36, spawn, {.v = termcmd }),   // Return
+	KEYCODE(MODKEY, 56, togglebar, {0}),               // b
+	KEYCODE(MODKEY, 44, focusstack, {.i = +1 }),        // j
+	KEYCODE(MODKEY, 45, focusstack, {.i = -1 }),        // k
+	// { MODKEY,                       31,        incnmaster,     {.i = +1 } },        // i
+	// { MODKEY,                       30,        incnmaster,     {.i = -1 } },        // u
+	KEYCODE(MODKEY, 43, setmfact, {.f = -0.05}),      // h
+	KEYCODE(MODKEY, 46, setmfact, {.f = +0.05}),      // l
+	KEYCODE(MODKEY, 39, zoom, {0}),               // s
+    // { MODKEY,                       23,        view,           {0} },               // Tab
+	KEYCODE(MODKEY, 24, killclient, {0}),               // q
+	KEYCODE(MODKEY, 28, setlayout, {.v = &layouts[0]}),// t
+	KEYCODE(MODKEY, 25, setlayout, {.v = &layouts[1]}),// w
 	// { MODKEY,                       52,        setlayout,      {.v = &layouts[2]} },// z
-	{ MODKEY,                       65,        setlayout,      {0} },               // Space
-	{ MODKEY|ShiftMask,             65,        togglefloating, {0} },               // Space
-	{ MODKEY,                       41,        togglefullscr,  {0} },               // f
-	{ MODKEY,                       19,        view,           {.ui = ~0 } },       // 0
-	{ MODKEY|ShiftMask,             19,        tag,            {.ui = ~0 } },       // 0
-	{ MODKEY,                       59,        focusmon,       {.i = -1 } },        // comma
-	{ MODKEY,                       60,        focusmon,       {.i = +1 } },        // period
-	{ MODKEY,                       23,        focusmon,       {.i = +1 } },        // Tab
-	{ MODKEY|ShiftMask,             59,        tagmon,         {.i = -1 } },        // comma
-	{ MODKEY|ShiftMask,             60,        tagmon,         {.i = +1 } },        // period
-	{ MODKEY|ShiftMask,             23,        tagmon,         {.i = +1 } },        // Tab
-    { MODKEY|ShiftMask,             44,        movestack,      {.i = +1 } },        // j
-	{ MODKEY|ShiftMask,             45,        movestack,      {.i = -1 } },        // k
+	KEYCODE(MODKEY, 65, setlayout, {0}),               // Space
+	KEYCODE(MODKEY|ShiftMask, 65, togglefloating, {0}),               // Space
+	KEYCODE(MODKEY, 41, togglefullscr, {0}),               // f
+	KEYCODE(MODKEY, 19, view, {.ui = ~0 }),       // 0
+	KEYCODE(MODKEY|ShiftMask, 19, tag, {.ui = ~0 }),       // 0
+	KEYCODE(MODKEY, 59, focusmon, {.i = -1 }),        // comma
+	KEYCODE(MODKEY, 60, focusmon, {.i = +1 }),        // period
+	KEYCODE(MODKEY, 23, focusmon, {.i = +1 }),        // Tab
+	KEYCODE(MODKEY|ShiftMask, 23, tagmon, {.i = +1 }),        // Tab
+	KEYCODE(MODKEY|ShiftMask, 59, tagmon, {.i = -1 }),        // comma
+	KEYCODE(MODKEY|ShiftMask, 60, tagmon, {.i = +1 }),        // period
+    KEYCODE(MODKEY|ShiftMask, 44, movestack, {.i = +1 }),        // j
+	KEYCODE(MODKEY|ShiftMask, 45, movestack, {.i = -1 }),        // k
 	TAGKEYS(                        10,                      0)                     // 1
 	TAGKEYS(                        11,                      1)                     // 2
 	TAGKEYS(                        12,                      2)                     // 3
@@ -148,31 +152,49 @@ static Key keys[] = {
 	TAGKEYS(                        16,                      6)                     // 7
 	TAGKEYS(                        17,                      7)                     // 8
 	TAGKEYS(                        18,                      8)                     // 9
-	{ MODKEY|ShiftMask,             32,        quit,           {0} },               // o
-    { MODKEY|ShiftMask,             27,        self_restart,   {0} },               // r
-    { MODKEY,                       27,        resetlayout,    {0} },               // r
-    { MODKEY,                       20,        spawn,          {.v = downvol } },   // -
-	{ MODKEY,                       21,        spawn,          {.v = upvol } },     // =
-	{ MODKEY,                       58,        spawn,          {.v = mutevol } },   // m
-    { MODKEY,                       34,        spawn,          {.v = downbrit } },  // [
-	{ MODKEY,                       35,        spawn,          {.v = upbrit } },    // ]
-	{ MODKEY,                       54,        spawn,          {.v = chrome } },    // c
+	KEYCODE(MODKEY|ShiftMask, 32, quit, {0}),               // o
+    KEYCODE(MODKEY|ShiftMask, 27, self_restart, {0}),               // r
+    KEYCODE(MODKEY, 27, resetlayout, {0}),               // r
+	KEYSYM(NULL, XF86XK_AudioLowerVolume, spawn, {.v = downvol }),
+	KEYSYM(NULL, XF86XK_AudioRaiseVolume, spawn, {.v = upvol }),
+	KEYSYM(NULL, XF86XK_AudioMute, spawn, {.v = mutevol }),
+    KEYCODE(MODKEY, 20, spawn, {.v = downvol }),   // -
+	KEYCODE(MODKEY, 21, spawn, {.v = upvol }),     // =
+	KEYCODE(MODKEY, 57, spawn, {.v = mutevol }),   // m
+    KEYCODE(MODKEY, 34, spawn, {.v = downbrit }),  // [
+	KEYCODE(MODKEY, 35, spawn, {.v = upbrit }),    // ]
+	KEYCODE(MODKEY, 54, spawn, {.v = chrome }),    // c
     // { Mod1Mask,                     50,        spawn,          {.v = kswitch } },   // Shift L
     // { ShiftMask,                    64,        spawn,          {.v = kswitch } },   // Alt L
-    { MODKEY,                       52,        spawn,          {.v = kswitchtous} },// z
-    { MODKEY|ShiftMask,             52,        spawn,          {.v = kswitchtode} },// Shift+z
-    { MODKEY,                       53,        spawn,          {.v = kswitchtoru} },// x
-    { MODKEY,                       55,        spawn,          {.v = kswitchtoge} },// v
-	{ MODKEY,                       42,        spawn,          {.v = gnomecontrolcenter } }, // g
-	{ MODKEY,                       26,        spawn,          {.v = lf } },        // e
-	{ NULL,                         218,       spawn,          {.v = flameshot } }, // PrtScr
-	{ MODKEY,                       58,        spawn,          {.v = monitor } }, // PrtScr
-	{ MODKEY|ShiftMask,             58,        spawn,          {.v = monitorr } }, // PrtScr
-	{ ShiftMask,                    218,       spawn,          {.v = flameshotfull } }, // Shift+PrtScr
-	{ MODKEY,                       38,        spawn,          {.v = touchpadtoggle } }, // a
-	{ MODKEY,                       42,        togglegaps,     {0}                } , // g
+    KEYCODE(MODKEY, 52, spawn, {.v = kswitchtous}),// z
+    KEYCODE(MODKEY|ShiftMask, 52, spawn, {.v = kswitchtode}),// Shift+z
+    KEYCODE(MODKEY, 53, spawn, {.v = kswitchtoru}),// x
+    KEYCODE(MODKEY, 55, spawn, {.v = kswitchtoge}),// v
+    KEYCODE(MODKEY, 58, spawn, {.v = monitor }),// m
+    KEYCODE(MODKEY|ShiftMask, 58, spawn, {.v = monitorr }),// m
+	KEYCODE(MODKEY, 42, spawn, {.v = gnomecontrolcenter }), // g
+	KEYCODE(MODKEY, 26, spawn, {.v = lf }),        // e
+	KEYCODE(NULL, 112, spawn, {.v = flameshot }), // PgUp
+	KEYCODE(ShiftMask, 107, spawn, {.v = flameshotfull }), // PrtSc
 
-    { MODKEY,                       49,        togglescratch,  {.v = scratchpadcmd } }, // `
+    KEYCODE(MODKEY, 49, togglescratch, {.v = scratchpadcmd }), // `
+
+	KEYCODE(MODKEY, 121, incrgaps, {.i = +1 }),		// F1
+	KEYCODE(MODKEY, 122, incrgaps, {.i = -1 }),		// F2
+	// { MODKEY|Mod4Mask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } },
+	// { MODKEY|Mod4Mask|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } },
+	// { MODKEY|Mod4Mask|ControlMask,  XK_h,      incrigaps,      {.i = +1 } },
+	// { MODKEY|Mod4Mask|ControlMask,  XK_l,      incrigaps,      {.i = -1 } },
+	KEYCODE(MODKEY, 123, togglegaps, {0}),				// F3
+	// { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
+	// { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } },
+	// { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } },
+	// { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } },
+	// { MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } },
+	// { MODKEY|Mod4Mask,              XK_y,      incrohgaps,     {.i = +1 } },
+	// { MODKEY|Mod4Mask,              XK_o,      incrohgaps,     {.i = -1 } },
+	// { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } },
+	// { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } },
 };
 
 /* button definitions */
