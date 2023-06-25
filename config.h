@@ -84,13 +84,13 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "stt", NULL };
+static const char *termcmd[]  = { "alacrittyy", NULL };;
 static const char *upvol[]   = { "volumectl", "-i", "5", NULL };
 static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
 static const char *upbrit[]   = { "brightness", "-inc", "10", NULL };
 static const char *downbrit[] = { "brightness", "-dec", "10", NULL };
-static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
+static const char *chrome[]  = { "firefox", NULL };
 // static const char *firefox[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "klswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "cinnamon-settings", NULL };
