@@ -10,12 +10,11 @@ if (( increment < 0 )); then
   exit 1
 fi
 
-case $operation in
-  -i) amixer set Master "$increment%+" ;;
-  -d) amixer set Master "$increment%-" ;;
-  -m) amixer set Master toggle ;;
-  *) echo "invalid flag: $operation"; exit 1 ;;
-esac
+if [[ "$operation" == "-m" ]]; then
+	operation="-t"
+fi
+
+pamixer "$operation" "$increment"
 
 # Signal dwmblocks to update volume in status bar
 kill -44 "$(pidof dwmblocks)" &> /dev/null
