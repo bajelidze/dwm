@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+declare _OPTION_SOURCE=false
+declare _OPTION_SINK=false
+
+_optparse() {
+  while getopts "sSh" opt; do
+    case "$opt" in
+      s)
+        _OPTION_SINK=true
+        ;;
+      S)
+        _OPTION_SOURCE=true
+        ;;
+      h)
+        print_help
+        exit 0
+        ;;
+      *)
+        print_help >&2
+        fatal "Unknown flag: $opt"
+        ;;
+    esac
+  done
+}
+
+print_help() {
+  echo "Control the default audio sink/source devices"
+  echo "Usage: adevctl [-s|-S|-h]"
+}
+
+fatal() {
+  echo "Error: $*" >&2
+  exit 1
+}
+
+list_devices() {
+  local dev_type=$1
+
+  #shellcheck disable=SC2016
+  local awk_query='$1=="factory.name" && $3=="\"api.alsa.pcm.'"$dev_type"'\"" {found=1; next} found && $1=="node.name" {found=0; gsub("\"", "", $3); print $3}'
+
+  pactl list \
+    | awk "$awk_query" \
+    | sort -u
+}
+
+get_default_device() {
+  local dev_type=$1
+  pactl "get-default-$dev_type"
+}
+
+get_next_device() {
+  local current_dev="$1"; shift
+  local -a devs=("$@")
+  local dev next_dev
+
+  for idx in "${!devs[@]}"; do
+    dev="${devs[$idx]}"
+
+    if [[ "$dev" != "$current_dev" ]]; then
+      continue
+    fi
+
+    # If the last dev is selected,
+    # the next dev is the first one.
+    if (( idx >= ${#devs[@]}-1 )); then
+      next_dev="${devs[0]}"
+    else
+      next_dev="${devs[$idx+1]}"
+    fi
+  done
+
+  if [[ -z "$next_dev" ]]; then
+    fatal "couldn't find the next device to switch to"
+  fi
+
+  echo "$next_dev"
+}
+
+set_device() {
+  local dev_type=$1; dev=$2
+
+  pactl "set-default-$dev_type" "$dev"
+  notify_new_device "$dev_type" "$dev"
+}
+
+notify_new_device() {
+  local dev_type=$1; dev=$2
+
+  if command -v notify-send &> /dev/null ; then
+    notify-send -u low -t 3000 "Default audio $dev_type: $dev"
+  fi
+}
+
+print_current_devs() {
+  echo "sink: $(get_default_device sink)"
+  echo "source: $(get_default_device source)"
+}
+
+main() {
+  local -a devs current_dev next_dev dev_type=""
+
+  _optparse "$@"
+
+  if [[ "$_OPTION_SINK" == true ]]; then
+    dev_type=sink
+  elif [[ "$_OPTION_SOURCE" == true ]]; then
+    dev_type=source
+  fi
+
+  if [[ -z "$dev_type" ]]; then
+    print_current_devs
+    exit 0
+  fi
+
+  mapfile -t devs < <(list_devices "$dev_type")
+  current_dev="$(get_default_device "$dev_type")"
+  next_dev="$(get_next_device "$current_dev" "${devs[@]}")"
+
+  set_device "$dev_type" "$next_dev"
+}
+
+main "$@"

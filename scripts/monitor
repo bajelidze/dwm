@@ -14,7 +14,7 @@ if [[ $1 == -r ]]; then
     --output "$second_mon" --off \
     --auto
   
-  feh --bg-scale /home/ib/Pictures/tree.jpg
+  feh --bg-scale /home/ib/Pictures/current
   exit
 fi
 
@@ -24,4 +24,4 @@ xrandr --output "$first_mon" --mode 2560x1440 --rate 144 --pos 1920x0 \
   --output "$first_mon" --left-of "$second_mon" --mode 1920x1080 --rate 180 \
   --output "$main_monitor" --off
 
-feh --bg-scale /home/ib/Pictures/tree.jpg
+feh --bg-scale /home/ib/Pictures/current

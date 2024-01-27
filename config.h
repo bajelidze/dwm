@@ -87,6 +87,7 @@ static const char *termcmd[]  = { "alacrittyy", "--working-directory", "$(xcwd)"
 static const char *upvol[]   = { "volumectl", "-i", "5", NULL };
 static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
+static const char *adevctl[] = { "adevctl", "-s",  NULL };
 static const char *upbrit[]   = { "brightness", "-i", "10", NULL };
 static const char *downbrit[] = { "brightness", "-d", "10", NULL };
 // static const char *chrome[]  = { "google-chrome-stable", "--password-store=gnome", NULL };
@@ -160,6 +161,7 @@ static Key keys[] = {
     KEYCODE(MODKEY, 20, spawn, {.v = downvol }),   // -
 	KEYCODE(MODKEY, 21, spawn, {.v = upvol }),     // =
 	KEYCODE(MODKEY, 57, spawn, {.v = mutevol }),   // m
+    KEYCODE(MODKEY, 33, spawn, {.v = adevctl }),   // -
     KEYCODE(MODKEY, 34, spawn, {.v = downbrit }),  // [
 	KEYCODE(MODKEY, 35, spawn, {.v = upbrit }),    // ]
 	KEYCODE(MODKEY, 54, spawn, {.v = chrome }),    // c
