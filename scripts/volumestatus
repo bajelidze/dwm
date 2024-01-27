@@ -5,7 +5,7 @@ is_unmuted() {
 }
 
 get_volume() {
-  amixer sget Master | awk -F'[][]' '/Left:/ { print $2 }'
+  pactl get-sink-volume 0 | grep -oE "[0-9]+%" | head -1
 }
 
 declare output
