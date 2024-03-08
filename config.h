@@ -94,12 +94,12 @@ static const char *downbrit[] = { "brightness", "-d", "10", NULL };
 static const char *chrome[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
-static const char *lf[]  = { "st", "-e", "lfrun", NULL };
+static const char *lf[]  = { "alacritty", "-e", "yazi", NULL };
 static const char *flameshot[]  = { "fs", "gui", NULL };
 static const char *flameshotfull[]  = { "fs", "full", NULL };
 
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", "-e", "zsh", NULL };
+static const char *scratchpadcmd[] = { "alacritty", "-o", "window.dimensions.lines=34", "-o", "window.dimensions.columns=128", "-o", "window.title='scratchpad'", NULL };
 
 
 static const char *kswitchtous[]  = { "kswitchto", "us", NULL };
