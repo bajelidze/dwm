@@ -94,7 +94,7 @@ static const char *chrome[]  = { "firefox", NULL };
 // static const char *firefox[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "klswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "cinnamon-settings", NULL };
-static const char *lf[]  = { "st", "-e", "lfrun", NULL };
+static const char *lf[]  = { "alacritty", "-e", "yazi", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", "-p", "/home/irakli/Pictures/Screenshots", NULL };
 static const char *flameshotfull[]  = { "flameshot", "full", "-p", "/home/irakli/Pictures/Screenshots", NULL };
 
@@ -155,9 +155,9 @@ static Key keys[] = {
 	KEYCODE(MODKEY|ShiftMask, 32, quit, {0}),               // o
     KEYCODE(MODKEY|ShiftMask, 27, self_restart, {0}),               // r
     KEYCODE(MODKEY, 27, resetlayout, {0}),               // r
-	KEYSYM(NULL, XF86XK_AudioLowerVolume, spawn, {.v = downvol }),
-	KEYSYM(NULL, XF86XK_AudioRaiseVolume, spawn, {.v = upvol }),
-	KEYSYM(NULL, XF86XK_AudioMute, spawn, {.v = mutevol }),
+//	KEYSYM(NULL, XF86XK_AudioLowerVolume, spawn, {.v = downvol }),
+//	KEYSYM(NULL, XF86XK_AudioRaiseVolume, spawn, {.v = upvol }),
+//	KEYSYM(NULL, XF86XK_AudioMute, spawn, {.v = mutevol }),
     KEYCODE(MODKEY, 20, spawn, {.v = downvol }),   // -
 	KEYCODE(MODKEY, 21, spawn, {.v = upvol }),     // =
 	KEYCODE(MODKEY, 57, spawn, {.v = mutevol }),   // m
@@ -174,7 +174,7 @@ static Key keys[] = {
     KEYCODE(MODKEY|ShiftMask, 58, spawn, {.v = monitorr }),// m
 	KEYCODE(MODKEY, 42, spawn, {.v = gnomecontrolcenter }), // g
 	KEYCODE(MODKEY, 26, spawn, {.v = lf }),        // e
-	KEYCODE(NULL, 112, spawn, {.v = flameshot }), // PgUp
+	// KEYCODE(NULL, 112, spawn, {.v = flameshot }), // PgUp
 	KEYCODE(ShiftMask, 107, spawn, {.v = flameshotfull }), // PrtSc
 
     KEYCODE(MODKEY, 49, togglescratch, {.v = scratchpadcmd }), // `
