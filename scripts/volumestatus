@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 is_unmuted() {
-  amixer get Master | tail -2 | grep -cq '\[on\]'
+  pactl get-sink-mute 0 | grep -q '^Mute: no$'
 }
 
 get_volume() {

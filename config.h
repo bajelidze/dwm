@@ -84,6 +84,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "alacrittyy", "--working-directory", "$(xcwd)", NULL };
+// static const char *termcmd[]  = { "stt", NULL };
 static const char *upvol[]   = { "volumectl", "-i", "5", NULL };
 static const char *downvol[] = { "volumectl", "-d", "5", NULL };
 static const char *mutevol[] = { "volumectl", "-m",  NULL };
@@ -95,11 +96,13 @@ static const char *chrome[]  = { "firefox", NULL };
 // static const char *kswitch[]  = { "kswitch", NULL };
 static const char *gnomecontrolcenter[]  = { "gnome-control-center", NULL };
 static const char *lf[]  = { "alacritty", "-e", "yazi", NULL };
+// static const char *lf[]  = { "stt", "-e", "yazi", NULL };
 static const char *flameshot[]  = { "fs", "gui", NULL };
 static const char *flameshotfull[]  = { "fs", "full", NULL };
 
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "alacritty", "-o", "window.dimensions.lines=34", "-o", "window.dimensions.columns=128", "-o", "window.title='scratchpad'", NULL };
+// static const char *scratchpadcmd[] = { "st", "-g", "116x32", "-t", "scratchpad", NULL };
 
 
 static const char *kswitchtous[]  = { "kswitchto", "us", NULL };

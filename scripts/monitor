@@ -18,7 +18,7 @@ if [[ $1 == -r ]]; then
   exit
 fi
 
-xrandr --output "$first_mon" --mode 2560x1440 --rate 144 --pos 1920x0 \
+xrandr --output "$first_mon" --mode 2560x1440 --rate 165 --pos 1920x0 \
   --output "$second_mon" --left-of "$first_mon" --mode 1920x1080 --rate 180 --pos 0x360 \
   --output "$main_monitor" --off 2>/dev/null || sleep 1; xrandr --output "$second_mon" --mode 2560x1440 --rate 240 \
   --output "$first_mon" --left-of "$second_mon" --mode 1920x1080 --rate 180 \
