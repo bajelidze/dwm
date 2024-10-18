@@ -3,7 +3,6 @@
 - systray
 - noborderfloatingfix
 - notitle
-- noborderfloatingfix
 - hide_vacant_tags
 - alwayscenter
 - movestack
@@ -20,3 +19,4 @@
 - resetlayout
 - vanitygaps
 - warp
+- statusallmons

@@ -158,9 +158,9 @@ static Key keys[] = {
 	KEYCODE(MODKEY|ShiftMask, 32, quit, {0}),               // o
     KEYCODE(MODKEY|ShiftMask, 27, self_restart, {0}),               // r
     KEYCODE(MODKEY, 27, resetlayout, {0}),               // r
-	KEYSYM(NULL, XF86XK_AudioLowerVolume, spawn, {.v = downvol }),
-	KEYSYM(NULL, XF86XK_AudioRaiseVolume, spawn, {.v = upvol }),
-	KEYSYM(NULL, XF86XK_AudioMute, spawn, {.v = mutevol }),
+	KEYSYM(0, XF86XK_AudioLowerVolume, spawn, {.v = downvol }),
+	KEYSYM(0, XF86XK_AudioRaiseVolume, spawn, {.v = upvol }),
+	KEYSYM(0, XF86XK_AudioMute, spawn, {.v = mutevol }),
     KEYCODE(MODKEY, 20, spawn, {.v = downvol }),   // -
 	KEYCODE(MODKEY, 21, spawn, {.v = upvol }),     // =
 	KEYCODE(MODKEY, 57, spawn, {.v = mutevol }),   // m
@@ -178,7 +178,7 @@ static Key keys[] = {
     KEYCODE(MODKEY|ShiftMask, 58, spawn, {.v = monitorr }),// m
 	KEYCODE(MODKEY, 42, spawn, {.v = gnomecontrolcenter }), // g
 	KEYCODE(MODKEY, 26, spawn, {.v = lf }),        // e
-	KEYCODE(NULL, 112, spawn, {.v = flameshot }), // PgUp
+	KEYCODE(0, 112, spawn, {.v = flameshot }), // PgUp
 	KEYCODE(ShiftMask, 107, spawn, {.v = flameshotfull }), // PrtSc
 
     KEYCODE(MODKEY, 49, togglescratch, {.v = scratchpadcmd }), // `
