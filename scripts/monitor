@@ -13,15 +13,13 @@ if [[ $1 == -r ]]; then
     --output "$first_mon" --off \
     --output "$second_mon" --off \
     --auto
-  
+
   feh --bg-scale /home/ib/Pictures/current
   exit
 fi
 
-xrandr --output "$first_mon" --mode 2560x1440 --rate 165 --pos 1920x0 \
-  --output "$second_mon" --left-of "$first_mon" --mode 1920x1080 --rate 180 --pos 0x360 \
-  --output "$main_monitor" --off 2>/dev/null || sleep 1; xrandr --output "$second_mon" --mode 2560x1440 --rate 240 \
-  --output "$first_mon" --left-of "$second_mon" --mode 1920x1080 --rate 180 \
-  --output "$main_monitor" --off
+xrandr --output "$second_mon" --mode 2560x1440 --rate 165 --pos 1920x0 \
+  --output "$first_mon" --left-of "$second_mon" --mode 1920x1080 --rate 120 --pos 0x360 \
+  --output "$main_monitor" --off 2>/dev/null 
 
 feh --bg-scale /home/ib/Pictures/current

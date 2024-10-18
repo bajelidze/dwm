@@ -23,7 +23,7 @@ if [[ "$state" == "discharging" ]]; then
 elif [[ "$state" == "charging" ]]; then
   color="$charging_color" # green
   output+="($time)"
-elif [[ "$percentage" == "" && "$state" == "fully-charged" ]]; then
+else
   color="$charging_color"
   output="100%"
 fi
